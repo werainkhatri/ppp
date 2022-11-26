@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:ppp/slide_scaffold/nav_button.dart';
 import 'package:ppp/utils/functions.dart';
 
@@ -16,17 +17,21 @@ class _SlideScaffoldState extends State<SlideScaffold> {
   int _currentSlide = -1;
   final GlobalKey _navigatorKey = GlobalKey<NavigatorState>();
 
+  void _updatePage() {
+    Navigator.of(_navigatorKey.currentContext!).pushReplacementNamed(_currentSlide.toString());
+  }
+
   void _onNext() {
     if (_currentSlide < widget.slides.length - 1) {
       _currentSlide++;
-      Navigator.of(_navigatorKey.currentContext!).pushNamed(_currentSlide.toString());
+      _updatePage();
     }
   }
 
   void _onPrevious() {
     if (_currentSlide > 0) {
       _currentSlide--;
-      Navigator.of(_navigatorKey.currentContext!).pop();
+      _updatePage();
     }
   }
 
@@ -44,9 +49,12 @@ class _SlideScaffoldState extends State<SlideScaffold> {
       body: Navigator(
         key: _navigatorKey,
         initialRoute: _currentSlide.toString(),
-        onGenerateRoute: (settings) => MaterialPageRoute(
-          builder: (context) => DefaultTextStyle(
-            style: GoogleFonts.openSans(fontWeight: FontWeight.w600, color: Colors.black),
+        onGenerateRoute: (settings) => PageTransition(
+          type: PageTransitionType.fade,
+          duration: Duration.zero,
+          settings: settings,
+          child: DefaultTextStyle(
+            style: GoogleFonts.openSans(fontWeight: FontWeight.w600),
             child: F.getSlideFromName(settings.name, widget.slides),
           ),
         ),

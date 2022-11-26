@@ -19,9 +19,8 @@ class _NavButtonState extends State<NavButton> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.transparent,
         borderRadius: BorderRadius.circular(50),
-        border: Border.all(color: Theme.of(context).colorScheme.secondary.withAlpha(50)),
+        border: Border.all(color: Theme.of(context).colorScheme.primary.withAlpha(50)),
       ),
       child: MouseRegion(
         onEnter: (event) {
@@ -38,12 +37,12 @@ class _NavButtonState extends State<NavButton> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           onPressed: widget.onPressed,
-          hoverColor: Theme.of(context).colorScheme.onBackground,
+          hoverColor: Theme.of(context).colorScheme.onPrimary,
           splashColor: Theme.of(context).colorScheme.surface,
           child: isHovering
               ? Icon(
                   widget.icon,
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.primary,
                   size: NavButton.buttonSize,
                 )
               : const SizedBox.shrink(),

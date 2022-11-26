@@ -9,9 +9,11 @@ environment:
   sdk: '>=2.18.4 <3.0.0'
 
 dependencies:
+  flex_color_scheme: ^6.1.1
   flutter:
     sdk: flutter
   google_fonts: ^3.0.1
+  page_transition: ^2.0.9
   url_launcher: ^6.1.7
 
 dev_dependencies:
@@ -24,5 +26,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+  fonts:
+    - family: Nabla
+      fonts:
+        - asset: assets/fonts/Nabla-Regular.ttf
 
 

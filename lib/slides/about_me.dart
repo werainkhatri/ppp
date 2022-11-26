@@ -30,43 +30,65 @@ class AboutMe extends StatelessWidget {
           const SizedBox(height: 20),
           const Text(S.oneLineAboutMe, style: TextStyle(fontSize: 20, inherit: true)),
           const SizedBox(height: 50),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              DefaultTextStyle(
-                style: F.getDTS(context).copyWith(fontSize: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('You can find me', style: TextStyle(fontSize: 30, inherit: true)),
-                    SizedBox(height: 15),
-                    LinkText(text: 'on YouTube', url: S.youtubeUrl),
-                    Text('livestreaming my flutter contributions ⏯.'),
-                    SizedBox(height: 15),
-                    LinkText(text: 'on GitHub', url: S.githubUrl),
-                    Text('contributing to the flutter org and building personal projects 🧑🏻‍💻.'),
-                    SizedBox(height: 15),
-                    LinkText(text: 'on Twitter', url: S.twitterUrl),
-                    Text('tweeting about software and stuff and engaging with the flutter '
-                        'community 💙.'),
-                    SizedBox(height: 15),
-                    LinkText(text: 'on LinkedIn', url: S.linkedinUrl),
-                    Text("if you want to connect there."),
-                    SizedBox(height: 15),
-                    LinkText(text: 'on Medium', url: S.linkedinUrl),
-                    Text("where i have posted one blog 😅. I'll publish more if I get time."),
-                  ],
-                ),
-              ),
+          LayoutBuilder(builder: (_, constraints) {
+            final List<Widget> children = [
+              const _YouCanFindMe(),
+              const SizedBox(height: 50),
               Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Image.asset('assets/google-search.png', height: 500),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Image.asset('assets/google-search.png', height: 500),
+                  ),
                 ),
               ),
-            ],
-          )
+            ];
+            if (constraints.maxWidth < 1000) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: children,
+              );
+            }
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: children,
+            );
+          }),
+        ],
+      ),
+    );
+  }
+}
+
+class _YouCanFindMe extends StatelessWidget {
+  const _YouCanFindMe({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTextStyle(
+      style: F.getDTS(context).copyWith(fontSize: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text('You can find me', style: TextStyle(fontSize: 30, inherit: true)),
+          SizedBox(height: 15),
+          LinkText(text: 'on YouTube', url: S.youtubeUrl),
+          Text('livestreaming my flutter contributions ⏯.'),
+          SizedBox(height: 15),
+          LinkText(text: 'on GitHub', url: S.githubUrl),
+          Text('contributing to the flutter org and building personal projects 🧑🏻‍💻.'),
+          SizedBox(height: 15),
+          LinkText(text: 'on Twitter', url: S.twitterUrl),
+          Text('tweeting about software and stuff and engaging with the flutter '
+              'community 💙.'),
+          SizedBox(height: 15),
+          LinkText(text: 'on LinkedIn', url: S.linkedinUrl),
+          Text("if you want to connect there."),
+          SizedBox(height: 15),
+          LinkText(text: 'on Medium', url: S.linkedinUrl),
+          Text("where i have posted one blog 😅. I'll publish more if I get time."),
         ],
       ),
     );
