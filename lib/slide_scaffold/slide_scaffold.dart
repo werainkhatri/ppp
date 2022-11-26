@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ppp/slide_scaffold/nav_button.dart';
 import 'package:ppp/utils/functions.dart';
 
@@ -44,7 +45,10 @@ class _SlideScaffoldState extends State<SlideScaffold> {
         key: _navigatorKey,
         initialRoute: _currentSlide.toString(),
         onGenerateRoute: (settings) => MaterialPageRoute(
-          builder: (context) => F.getSlideFromName(settings.name, widget.slides),
+          builder: (context) => DefaultTextStyle(
+            style: GoogleFonts.openSans(fontWeight: FontWeight.w600, color: Colors.black),
+            child: F.getSlideFromName(settings.name, widget.slides),
+          ),
         ),
       ),
       floatingActionButton: Row(
