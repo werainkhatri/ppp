@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:ppp/slide_scaffold/nav_button.dart';
+import 'package:ppp/widgets/nav_button.dart';
 import 'package:ppp/utils/functions.dart';
 
 class SlideScaffold extends StatefulWidget {
@@ -16,6 +15,11 @@ class SlideScaffold extends StatefulWidget {
 class _SlideScaffoldState extends State<SlideScaffold> {
   int _currentSlide = -1;
   final GlobalKey _navigatorKey = GlobalKey<NavigatorState>();
+  final HeroController _heroController = HeroController(
+    createRectTween: (Rect? begin, Rect? end) {
+      return MaterialRectArcTween(begin: begin, end: end);
+    },
+  );
 
   void _updatePage() {
     Navigator.of(_navigatorKey.currentContext!).pushReplacementNamed(_currentSlide.toString());
@@ -46,16 +50,16 @@ class _SlideScaffoldState extends State<SlideScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Navigator(
-        key: _navigatorKey,
-        initialRoute: _currentSlide.toString(),
-        onGenerateRoute: (settings) => PageTransition(
-          type: PageTransitionType.fade,
-          duration: Duration.zero,
-          settings: settings,
-          child: DefaultTextStyle(
-            style: GoogleFonts.openSans(fontWeight: FontWeight.w600),
-            child: F.getSlideFromName(settings.name, widget.slides),
+      body: HeroControllerScope(
+        controller: _heroController,
+        child: Navigator(
+          key: _navigatorKey,
+          initialRoute: _currentSlide.toString(),
+          onGenerateRoute: (settings) => MaterialPageRoute(
+            builder: (_) => DefaultTextStyle(
+              style: GoogleFonts.openSans(fontWeight: FontWeight.w600),
+              child: F.getSlideFromName(settings.name, widget.slides),
+            ),
           ),
         ),
       ),

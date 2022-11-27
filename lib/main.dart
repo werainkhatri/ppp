@@ -1,6 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:ppp/slide_scaffold/slide_scaffold.dart';
+import 'package:ppp/slide_scaffold.dart';
+import 'package:ppp/slides/fractals.dart';
 import 'package:ppp/slides/slides.dart';
 import 'package:ppp/slides/thumbnail.dart';
 import 'package:ppp/utils/colors.dart';
@@ -15,11 +16,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      theme: FlexThemeData.dark(colorScheme: ColorScheme.fromSeed(seedColor: C.vir3n)),
-      home: const SlideScaffold(
+      theme: FlexThemeData.dark(colorScheme: ColorScheme.fromSeed(seedColor: C.viren)),
+      home: SlideScaffold(
         slides: [
-          Thumbnail(),
-          AboutMe(),
+          const Thumbnail(),
+          const AboutMe(),
+          for (int i = 1; i <= Fractals.finalState; i++) Fractals(state: i),
         ],
       ),
     );

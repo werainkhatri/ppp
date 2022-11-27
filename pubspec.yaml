@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
   google_fonts: ^3.0.1
   page_transition: ^2.0.9
+  umbra_flutter: ^0.1.0-dev.4
   url_launcher: ^6.1.7
 
 dev_dependencies:
@@ -30,5 +31,8 @@ flutter:
     - family: Nabla
       fonts:
         - asset: assets/fonts/Nabla-Regular.ttf
+    - family: Rubik Maze
+      fonts:
+        - asset: assets/fonts/RubikMaze-Regular.ttf
 
 
