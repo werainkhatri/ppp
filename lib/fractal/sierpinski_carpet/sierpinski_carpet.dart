@@ -24,6 +24,7 @@ class _SierpinksiCarpetState extends State<SierpinksiCarpet> {
   @override
   Widget build(BuildContext context) {
     return InteractiveViewer(
+      maxScale: 1e4,
       transformationController: _controller,
       onInteractionUpdate: (_) {
         final int newDueToZoom = _iterationsFromZoom(_controller.value.row0[0]);
@@ -34,7 +35,6 @@ class _SierpinksiCarpetState extends State<SierpinksiCarpet> {
           });
         }
       },
-      maxScale: 1000,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final double maxSize = min(constraints.maxHeight, constraints.maxWidth);

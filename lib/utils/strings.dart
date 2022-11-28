@@ -6,4 +6,8 @@ class S {
 
   static const oneLineAboutMe =
       'software engineer at Amazon 📦 by day, Member of the Flutter Org 💙 by night, Livestreaming on YouTube ⏯ on (some) weekends.';
+
+  static const fractalsTag = 'fractals';
+  static const sierpinksiCarpetTag = 'sierpinksi carpet';
+  static const kochSnowflakeTag = 'koch snowflake';
 }

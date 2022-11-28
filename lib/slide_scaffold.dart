@@ -21,21 +21,17 @@ class _SlideScaffoldState extends State<SlideScaffold> {
     },
   );
 
-  void _updatePage() {
-    Navigator.of(_navigatorKey.currentContext!).pushReplacementNamed(_currentSlide.toString());
-  }
-
   void _onNext() {
     if (_currentSlide < widget.slides.length - 1) {
       _currentSlide++;
-      _updatePage();
+      Navigator.of(_navigatorKey.currentContext!).pushNamed(_currentSlide.toString());
     }
   }
 
   void _onPrevious() {
     if (_currentSlide > 0) {
       _currentSlide--;
-      _updatePage();
+      Navigator.of(_navigatorKey.currentContext!).pop();
     }
   }
 
@@ -55,11 +51,30 @@ class _SlideScaffoldState extends State<SlideScaffold> {
         child: Navigator(
           key: _navigatorKey,
           initialRoute: _currentSlide.toString(),
-          onGenerateRoute: (settings) => MaterialPageRoute(
-            builder: (_) => DefaultTextStyle(
+          onGenerateRoute: (settings) => PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => DefaultTextStyle(
               style: GoogleFonts.openSans(fontWeight: FontWeight.w600),
               child: F.getSlideFromName(settings.name, widget.slides),
             ),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              const right = Offset(-1.0, 0.0);
+              const center = Offset.zero;
+              const left = Offset(1.0, 0.0);
+              final inTween = Tween(begin: left, end: center);
+              final outTween = Tween(begin: center, end: right);
+              final Animation<Offset> offsetAnimation;
+
+              if (animation.value == 1.0 && secondaryAnimation.value != 0.0) {
+                offsetAnimation = secondaryAnimation.drive(outTween);
+              } else {
+                offsetAnimation = animation.drive(inTween);
+              }
+
+              return SlideTransition(
+                position: offsetAnimation,
+                child: child,
+              );
+            },
           ),
         ),
       ),

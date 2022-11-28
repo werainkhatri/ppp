@@ -1,8 +1,8 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:ppp/slide_scaffold.dart';
+import 'package:ppp/slides/about_me.dart';
 import 'package:ppp/slides/fractals.dart';
-import 'package:ppp/slides/slides.dart';
 import 'package:ppp/slides/thumbnail.dart';
 import 'package:ppp/utils/colors.dart';
 
@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       home: SlideScaffold(
         slides: [
           const Thumbnail(),
+          for (int i in [0, 1, 2]) Fractals(state: i),
           const AboutMe(),
-          for (int i = 1; i <= Fractals.finalState; i++) Fractals(state: i),
         ],
       ),
     );
