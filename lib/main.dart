@@ -4,6 +4,7 @@ import 'package:ppp/slide_scaffold.dart';
 import 'package:ppp/slides/about_me.dart';
 import 'package:ppp/slides/fractals.dart';
 import 'package:ppp/slides/thumbnail.dart';
+import 'package:ppp/slides/widgets.dart';
 import 'package:ppp/utils/colors.dart';
 
 void main() => runApp(const MyApp());
@@ -16,11 +17,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      theme: FlexThemeData.dark(colorScheme: ColorScheme.fromSeed(seedColor: C.viren)),
+      theme: FlexThemeData.dark(
+        colorScheme: ColorScheme.fromSeed(seedColor: C.viren),
+        applyElevationOverlayColor: true,
+      ),
       home: SlideScaffold(
         slides: [
           const Thumbnail(),
           for (int i in [0, 1, 2]) Fractals(state: i),
+          const Widgets(),
           const AboutMe(),
         ],
       ),

@@ -53,7 +53,7 @@ class _SlideScaffoldState extends State<SlideScaffold> {
           initialRoute: _currentSlide.toString(),
           onGenerateRoute: (settings) => PageRouteBuilder(
             pageBuilder: (context, animation1, animation2) => DefaultTextStyle(
-              style: GoogleFonts.openSans(fontWeight: FontWeight.w600),
+              style: GoogleFonts.rubik(fontWeight: FontWeight.w600),
               child: F.getSlideFromName(settings.name, widget.slides),
             ),
             transitionsBuilder: (context, animation, secondaryAnimation, child) {

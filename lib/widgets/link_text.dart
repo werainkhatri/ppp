@@ -31,10 +31,7 @@ class _LinkTextState extends State<LinkText> {
       child: GestureDetector(
         child: Text(
           widget.text,
-          style: TextStyle(
-            color: isHovering ? C.flutterBlue : Colors.lightBlue,
-            inherit: true,
-          ),
+          style: TextStyle(color: isHovering ? C.flutterBlue : Colors.lightBlue),
         ),
       ),
     );

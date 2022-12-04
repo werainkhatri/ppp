@@ -17,7 +17,7 @@ class AboutMe extends StatelessWidget {
         children: [
           Row(
             children: const [
-              Text('Viren Khatri', style: TextStyle(fontSize: 50, inherit: true)),
+              Text('Viren Khatri', style: TextStyle(fontSize: 50)),
               SizedBox(width: 10),
               NullSafety(),
               Spacer(),
@@ -28,7 +28,7 @@ class AboutMe extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          const Text(S.oneLineAboutMe, style: TextStyle(fontSize: 20, inherit: true)),
+          const Text(S.oneLineAboutMe, style: TextStyle(fontSize: 20)),
           const SizedBox(height: 50),
           LayoutBuilder(builder: (_, constraints) {
             final List<Widget> children = [
@@ -72,7 +72,7 @@ class _YouCanFindMe extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
-          Text('You can find me', style: TextStyle(fontSize: 30, inherit: true)),
+          Text('You can find me', style: TextStyle(fontSize: 30)),
           SizedBox(height: 15),
           LinkText(text: 'on YouTube', url: S.youtubeUrl),
           Text('livestreaming my flutter contributions ⏯.'),
