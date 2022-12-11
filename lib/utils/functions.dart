@@ -14,11 +14,15 @@ class F {
     return slides.tryGet(int.tryParse(name ?? '') ?? -1) ?? const SizedBox();
   }
 
-  static void launchGithubProfile() {
+  static void openPPPRepo() {
+    openUrl(S.githubPPPUrl);
+  }
+
+  static void openUrl(String url) {
     if (kIsWeb) {
       // TODO: handle kIsWeb
     } else {
-      launchUrlString(S.githubUrl);
+      launchUrlString(url);
     }
   }
 

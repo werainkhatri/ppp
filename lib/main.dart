@@ -1,6 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:ppp/slide_scaffold.dart';
+import 'package:ppp/slides/render_object.dart';
 import 'package:ppp/slides/slides.dart';
 import 'package:ppp/utils/colors.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
           for (int i in List.generate(CustomPaintSlide.totalStates, (i) => i))
             CustomPaintSlide(state: i),
           const CustomPaintCode(),
+          for (final bool show in [false, true]) RenderObjectSlide(showVideos: show),
           const AboutMe(),
         ],
       ),

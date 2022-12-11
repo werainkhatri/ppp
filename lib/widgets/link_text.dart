@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppp/utils/colors.dart';
+import 'package:ppp/utils/functions.dart';
 
 class LinkText extends StatefulWidget {
   const LinkText({Key? key, required this.text, required this.url}) : super(key: key);
@@ -29,6 +30,9 @@ class _LinkTextState extends State<LinkText> {
         });
       },
       child: GestureDetector(
+        onTap: () {
+          F.openUrl(widget.url);
+        },
         child: Text(
           widget.text,
           style: TextStyle(color: isHovering ? C.flutterBlue : Colors.lightBlue),

@@ -22,7 +22,7 @@ class AboutMe extends StatelessWidget {
               NullSafety(),
               Spacer(),
               IconButton(
-                onPressed: F.launchGithubProfile,
+                onPressed: F.openPPPRepo,
                 icon: Icon(Icons.description, color: C.flutterBlue, size: 30),
               )
             ],
@@ -87,7 +87,7 @@ class _YouCanFindMe extends StatelessWidget {
           LinkText(text: 'on LinkedIn', url: S.linkedinUrl),
           Text("if you want to connect there."),
           SizedBox(height: 15),
-          LinkText(text: 'on Medium', url: S.linkedinUrl),
+          LinkText(text: 'on Medium', url: S.mediumUrl),
           Text("where i have posted one blog 😅. I'll publish more if I get time."),
         ],
       ),

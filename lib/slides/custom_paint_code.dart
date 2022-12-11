@@ -15,7 +15,7 @@ class CustomPaintCode extends StatelessWidget {
           painter: SierpinskiCarpetPainter(
             carpetColor: Theme.of(context).colorScheme.primary,
             backgroundColor: Theme.of(context).colorScheme.background,
-            generation: 5,
+            generation: 1,
           ),
         ),
       ),
