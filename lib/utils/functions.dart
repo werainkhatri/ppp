@@ -26,6 +26,104 @@ class F {
     return DefaultTextStyle.of(context).style;
   }
 
+  static void drawSierpinskiCarpetMatrix(Canvas canvas, Size size, Offset dxy, double width) {
+    final Paint linePaint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = width;
+    canvas.drawLine(
+      Offset(dxy.dx + size.height / 3, dxy.dy),
+      Offset(dxy.dx + size.height / 3, dxy.dy + size.width),
+      linePaint,
+    );
+    canvas.drawLine(
+      Offset(dxy.dx + size.height / 3 * 2, dxy.dy),
+      Offset(dxy.dx + size.height / 3 * 2, dxy.dy + size.width),
+      linePaint,
+    );
+    canvas.drawLine(
+      Offset(dxy.dx + 0, dxy.dy + size.height / 3),
+      Offset(dxy.dx + size.width, dxy.dy + size.height / 3),
+      linePaint,
+    );
+    canvas.drawLine(
+      Offset(dxy.dx + 0, dxy.dy + size.height / 3 * 2),
+      Offset(dxy.dx + size.width, dxy.dy + size.height / 3 * 2),
+      linePaint,
+    );
+  }
+
+  static Rect getTopLeftRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left,
+      rect.top,
+      rect.left + rect.width / 3,
+      rect.top + rect.height / 3,
+    );
+  }
+
+  static Rect getTopMiddleRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + rect.width / 3,
+      rect.top,
+      rect.left + (rect.width / 3) * 2,
+      rect.top + rect.height / 3,
+    );
+  }
+
+  static Rect getTopRightRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + (rect.width / 3) * 2,
+      rect.top,
+      rect.right,
+      rect.top + rect.height / 3,
+    );
+  }
+
+  static Rect getMiddleLeftRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left,
+      rect.top + rect.height / 3,
+      rect.left + rect.width / 3,
+      rect.top + (rect.height / 3) * 2,
+    );
+  }
+
+  static Rect getMiddleRightRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + (rect.width / 3) * 2,
+      rect.top + rect.height / 3,
+      rect.right,
+      rect.top + (rect.height / 3) * 2,
+    );
+  }
+
+  static Rect getBottomLeftRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left,
+      rect.top + (rect.height / 3) * 2,
+      rect.left + rect.width / 3,
+      rect.bottom,
+    );
+  }
+
+  static Rect getBottomMiddleRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + rect.width / 3,
+      rect.top + (rect.height / 3) * 2,
+      rect.left + (rect.width / 3) * 2,
+      rect.bottom,
+    );
+  }
+
+  static Rect getBottomRightRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + (rect.width / 3) * 2,
+      rect.top + (rect.height / 3) * 2,
+      rect.right,
+      rect.bottom,
+    );
+  }
+
   static Vector4 colorToVector4(Color color) => Vector4(
         color.red / 255,
         color.green / 255,

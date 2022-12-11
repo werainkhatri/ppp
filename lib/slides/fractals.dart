@@ -19,6 +19,10 @@ class Fractals extends StatefulWidget {
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 5)), // 7
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 6)), // 8
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 7)), // 9
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinksiCarpet()), // 10
+    _Title(showFractals: true), // 11
+    Hero(tag: S.kochSnowflakeTag, child: KochSnowflake()), // 12
+    _Title(showFractals: true), // 13
   ];
 
   final int state;

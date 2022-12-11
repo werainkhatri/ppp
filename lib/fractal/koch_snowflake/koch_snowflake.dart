@@ -11,13 +11,15 @@ class KochSnowflake extends StatelessWidget {
       child: Center(
         child: InteractiveViewer(
           maxScale: 50,
-          child: AspectRatio(
-            aspectRatio: 0.866,
-            child: CustomPaint(
-              painter: KochSnowflakePainter(
-                iterations: 5,
-                curveColor: Theme.of(context).colorScheme.primary,
-                width: 0.5,
+          child: Center(
+            child: AspectRatio(
+              aspectRatio: 0.866,
+              child: CustomPaint(
+                painter: KochSnowflakePainter(
+                  iterations: 7,
+                  curveColor: Theme.of(context).colorScheme.primary,
+                  width: 0.7,
+                ),
               ),
             ),
           ),

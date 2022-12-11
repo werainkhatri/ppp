@@ -3,11 +3,8 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:ppp/utils/functions.dart';
 
-class SierpinskiCarpetCustomPaint extends StatelessWidget {
-  const SierpinskiCarpetCustomPaint({super.key, required this.generation});
-
-  /// generation of the sierpinski carpet, starting from 1.
-  final int generation;
+class CustomPaintCode extends StatelessWidget {
+  const CustomPaintCode({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +15,7 @@ class SierpinskiCarpetCustomPaint extends StatelessWidget {
           painter: SierpinskiCarpetPainter(
             carpetColor: Theme.of(context).colorScheme.primary,
             backgroundColor: Theme.of(context).colorScheme.background,
-            generation: generation,
+            generation: 5,
           ),
         ),
       ),
@@ -38,7 +35,12 @@ class SierpinskiCarpetPainter extends CustomPainter {
   final Color backgroundColor;
   final int generation;
 
-  final Paint carpetPaint = Paint()..style = PaintingStyle.fill;
+  late final Paint carpetBrush = Paint()
+    ..style = PaintingStyle.fill
+    ..color = carpetColor;
+  late final Paint backgroundBrush = Paint()
+    ..style = PaintingStyle.fill
+    ..color = backgroundColor;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -46,21 +48,11 @@ class SierpinskiCarpetPainter extends CustomPainter {
       ..add(Rect.fromPoints(Offset.zero, Offset(size.width, size.height)));
 
     /// draws the first generation carpet.
-    carpetPaint.color = carpetColor;
-    canvas.drawRect(Rect.fromPoints(Offset.zero, Offset(size.width, size.height)), carpetPaint);
-
-    carpetPaint.color = backgroundColor;
+    canvas.drawRect(currentRects.first, carpetBrush);
 
     // simple breadth first search.
     for (int i = 2; i <= generation; i++) {
       int rectCount = currentRects.length;
-
-      if (i.isEven) {
-        for (Rect rect in currentRects) {
-          F.drawSierpinskiCarpetMatrix(canvas, rect.size, rect.topLeft, generation / i);
-        }
-        continue;
-      }
 
       while (rectCount-- > 0) {
         final Rect currentRect = currentRects.removeFirst();
@@ -70,7 +62,7 @@ class SierpinskiCarpetPainter extends CustomPainter {
         final Rect rectToRemove = currentRect.deflate(currentRect.width / 3);
 
         // remove the middle rect.
-        canvas.drawRect(rectToRemove, carpetPaint);
+        canvas.drawRect(rectToRemove, backgroundBrush);
 
         // skip preprocessing the next generation for the last generation.
         if (i == generation) continue;
@@ -89,5 +81,5 @@ class SierpinskiCarpetPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

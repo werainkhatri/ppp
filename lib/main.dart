@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
           const Thumbnail(),
           for (int i in List.generate(Fractals.finalState, (i) => i)) Fractals(state: i),
           const Widgets(),
+          for (int i in List.generate(CustomPaintSlide.totalStates, (i) => i))
+            CustomPaintSlide(state: i),
+          const CustomPaintCode(),
           const AboutMe(),
         ],
       ),
