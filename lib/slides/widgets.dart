@@ -10,7 +10,7 @@ class Widgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
+    return LayoutBuilder(builder: (_, constraints) {
       double minDim = min(constraints.maxHeight, constraints.maxWidth);
 
       return Stack(
@@ -36,7 +36,7 @@ class Widgets extends StatelessWidget {
           Center(
             child: Text(
               'Widgets',
-              style: TextStyle(fontSize: constraints.maxWidth / 7),
+              style: TextStyle(fontSize: constraints.maxWidth / 10),
             ),
           ),
         ],

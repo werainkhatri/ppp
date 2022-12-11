@@ -5,7 +5,7 @@ import 'package:ppp/fractal/sierpinski_carpet/sierpinski_carpet_shader.dart';
 import 'package:ppp/utils/functions.dart';
 
 class SierpinksiCarpet extends StatefulWidget {
-  const SierpinksiCarpet({Key? key}) : super(key: key);
+  const SierpinksiCarpet({super.key});
 
   @override
   State<SierpinksiCarpet> createState() => _SierpinksiCarpetState();
@@ -47,7 +47,7 @@ class _SierpinksiCarpetState extends State<SierpinksiCarpet> {
               child: SierpinskiCarpetShader(
                 iterations: maxBySize + maxByZoom,
                 carpetColor: F.colorToVector4(Theme.of(context).colorScheme.primary),
-                backgroundColor: F.colorToVector4(Theme.of(context).colorScheme.primaryContainer),
+                backgroundColor: F.colorToVector4(Theme.of(context).colorScheme.background),
               ),
             ),
           );

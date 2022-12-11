@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ppp/fractal/koch_snowflake/koch_snowflake.dart';
 import 'package:ppp/fractal/sierpinski_carpet/sierpinski_carpet.dart';
+import 'package:ppp/fractal/sierpinski_carpet/sierpinski_carpet_custom_paint.dart';
+import 'package:ppp/utils/functions.dart';
 import 'package:ppp/utils/strings.dart';
 
 class Fractals extends StatefulWidget {
@@ -10,7 +12,13 @@ class Fractals extends StatefulWidget {
     _Title(showFractals: false), // 0
     _Title(showFractals: true), // 1
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinksiCarpet()), // 2
-    Hero(tag: S.kochSnowflakeTag, child: KochSnowflake()), // 3
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 1)), // 3
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 2)), // 4
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 3)), // 5
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 4)), // 6
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 5)), // 7
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 6)), // 8
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 7)), // 9
   ];
 
   final int state;
@@ -72,12 +80,12 @@ class _Title extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(40.0),
                 child: Text(
-                  'Fractals',
-                  style: TextStyle(
-                    fontFamily: 'Rubik Maze',
-                    fontSize: constraints.maxWidth / 7,
-                    fontWeight: FontWeight.w100,
-                  ),
+                  'Fractals ',
+                  style: F.getDTS(context).copyWith(
+                        fontFamily: 'Rubik Maze',
+                        fontSize: constraints.maxWidth / 7,
+                        fontWeight: FontWeight.w100,
+                      ),
                 ),
               ),
             ),
