@@ -33,7 +33,7 @@ class AboutMe extends StatelessWidget {
           LayoutBuilder(builder: (_, constraints) {
             final List<Widget> children = [
               const _YouCanFindMe(),
-              const SizedBox(height: 50),
+              const SizedBox.square(dimension: 50),
               Flexible(
                 child: Center(
                   child: Padding(
