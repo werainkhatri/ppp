@@ -4,5 +4,6 @@ export 'custom_paint_code.dart';
 export 'fractals.dart';
 export 'render_object.dart';
 export 'shaders.dart';
+export 'shader_examples.dart';
 export 'thumbnail.dart';
 export 'widgets.dart';

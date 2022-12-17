@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppp/shader_widgets/hello_world_shader.dart';
+import 'package:umbra_flutter/umbra_flutter.dart';
 
 class HelloWorld extends StatelessWidget {
   const HelloWorld({super.key});
@@ -32,7 +33,7 @@ class HelloWorld extends StatelessWidget {
 //     const duration = Duration(minutes: 10);
 //     controller = AnimationController(
 //       vsync: this,
-//       upperBound: duration.inSeconds.toDouble() / 60,
+//       upperBound: duration.inSeconds.toDouble() * 10,
 //       duration: duration,
 //     );
 //     controller.forward();
@@ -49,8 +50,8 @@ class HelloWorld extends StatelessWidget {
 //             return MouseRegion(
 //               onHover: (event) {
 //                 setState(() {
-//                   mouse.x = event.localPosition.dx / context.size!.width;
-//                   mouse.y = event.localPosition.dy / context.size!.height;
+//                   mouse.x = event.localPosition.dx / 100;
+//                   mouse.y = event.localPosition.dy / 100;
 //                 });
 //               },
 //               child: HelloWorldShader(

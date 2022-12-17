@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ppp/slides/shaders_code.dart';
 import 'package:ppp/utils/functions.dart';
 import 'package:ppp/widgets/image_source.dart';
+import 'package:ppp/widgets/link_text.dart';
 
 class ShadersSlide extends StatelessWidget {
   const ShadersSlide({super.key, this.state = 0});
@@ -15,8 +16,8 @@ class ShadersSlide extends StatelessWidget {
     _someShadyStuff,
     _shaders,
     _gutenbergPress,
-    _cpuVsGpuTBOS,
     _cpuVsGpuGoogle,
+    _cpuVsGpuTBOS,
     _umbraExample,
   ].asMap();
 
@@ -169,9 +170,51 @@ class ShadersSlide extends StatelessWidget {
   // umbra install-deps
   // umbra generate shaders/hello_world_shader.glsl --output lib/shader_widgets -t flutter-widget
   static Widget _umbraExample(double w, double minDim, BuildContext context) {
+    // List<Widget> shortDescription(String title, String desc) {
+    //   return [
+    //     Text(title, style: TextStyle(fontSize: minDim / 20)),
+    //     Text(desc, textAlign: TextAlign.center, style: TextStyle(fontSize: minDim / 25)),
+    //   ];
+    // }
+
     return Stack(
       children: [
-        Padding(padding: EdgeInsets.all(minDim / 15), child: const HelloWorld()),
+        Padding(
+          padding: EdgeInsets.all(minDim / 15),
+          child: const HelloWorld(),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //   children: [
+          //     const Expanded(
+          //       flex: 1,
+          //       child: HelloWorld(),
+          //     ),
+          //     Expanded(
+          //       flex: 1,
+          //       child: Column(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         children: [
+          //           ...shortDescription(
+          //             'Shader',
+          //             'user defined program\ndesigned to run on a GPU',
+          //           ),
+          //           SizedBox(height: minDim / 20),
+          //           ...shortDescription(
+          //             'Umbra',
+          //             'open source project to\nhelp generate necessary files\nfor Flutter Shaders.',
+          //           ),
+          //           SizedBox(height: minDim / 30),
+          //           ...shortDescription(
+          //             'GLSL',
+          //             'openGL Shading Language.',
+          //           ),
+          //           const LinkText(text: 'learn more here', url: 'https://thebookofshaders.com/'),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // ),
+        ),
         Positioned(
           right: minDim / 15,
           bottom: minDim / 15,
