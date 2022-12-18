@@ -80,7 +80,7 @@ class ShadersSlide extends StatelessWidget {
   static Widget _shaders(double w, double minDim, BuildContext context) {
     return Center(
       child: Hero(
-        tag: 'shaders',
+        tag: 'shaders_slide',
         child: Text('Shaders ', style: F.getDTS(context).copyWith(fontSize: w / 10)),
       ),
     );

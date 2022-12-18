@@ -59,6 +59,12 @@ class _WaterState extends State<Water> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double shaderHeight = 700,
@@ -69,6 +75,7 @@ class _WaterState extends State<Water> with SingleTickerProviderStateMixin {
         mainAxisSize: MainAxisSize.min,
         children: [
           FloatingActionButton(
+            heroTag: '1',
             onPressed: () {
               setState(() {
                 dimension++;
@@ -78,6 +85,7 @@ class _WaterState extends State<Water> with SingleTickerProviderStateMixin {
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
+            heroTag: '2',
             onPressed: () {
               setState(() {
                 dimension--;

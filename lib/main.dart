@@ -1,7 +1,8 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:ppp/rive/liquid_download.dart';
 import 'package:ppp/slide_scaffold.dart';
-import 'package:ppp/slides/lottie.dart';
+import 'package:ppp/slides/rive.dart';
 import 'package:ppp/slides/slides.dart';
 import 'package:ppp/slides/well_be_right_back.dart';
 import 'package:ppp/utils/colors.dart';
@@ -34,6 +35,8 @@ class MyApp extends StatelessWidget {
             ShadersSlide(state: i),
           for (final int i in List.generate(ShaderExamples.states.length, (i) => i))
             ShaderExamples(state: i),
+          const RiveSlide(),
+          const LiquidDownload(),
           const AboutMe(),
         ],
       ),

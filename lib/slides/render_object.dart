@@ -56,7 +56,7 @@ class RenderObjectSlide extends StatelessWidget {
               ),
             Center(
               child: Hero(
-                tag: 'renderbox',
+                tag: 'renderbox_slide',
                 child: Text(
                   'RenderObject ',
                   style: F.getDTS(context).copyWith(fontSize: constraints.maxWidth / 10),
