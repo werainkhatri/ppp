@@ -89,6 +89,9 @@ class _YouCanFindMe extends StatelessWidget {
           SizedBox(height: 15),
           LinkText(text: 'on Medium', url: S.mediumUrl),
           Text("where i have posted one blog 😅. I'll publish more if I get time."),
+          SizedBox(height: 15),
+          LinkText(text: 'in Bangalore', url: S.mediumUrl),
+          Text("where i'll me moving to soon and work out of."),
         ],
       ),
     );

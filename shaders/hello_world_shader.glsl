@@ -8,45 +8,14 @@
 /// $ umbra generate --target flutter-widget \
 ///      shaders/hello_world_shader.glsl --output lib/shader_widgets
 
-vec4 fragment (vec2 uv, vec2 fragCoord) {
-    return vec4(uv.x, uv.y, 0.0, 1.0);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // time and mouse based
-// uniform float u_time;
-// uniform vec2 u_mouse;
 // vec4 fragment (vec2 uv, vec2 fragCoord) {
-//     return vec4(sin(u_time), sin(u_mouse.x), sin(u_mouse.y), 1.0);
+//     return vec4(uv.x, uv.y, 0.0, 1.0);
 // }
+
+// time and mouse based
+uniform float u_time;
+uniform vec2 u_mouse;
+vec4 fragment (vec2 uv, vec2 fragCoord) {
+    return vec4(sin(u_time), sin(u_mouse.x), sin(u_mouse.y), 1.0);
+}
 
