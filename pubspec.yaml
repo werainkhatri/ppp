@@ -9,10 +9,12 @@ environment:
   sdk: '>=2.18.4 <3.0.0'
 
 dependencies:
+  audio_service: ^0.18.9
   flex_color_scheme: ^6.1.1
   flutter:
     sdk: flutter
   google_fonts: ^3.0.1
+  just_audio: ^0.9.32
   rive: ^0.10.0
   umbra_flutter: ^0.1.0-dev.4
   url_launcher: ^6.1.7

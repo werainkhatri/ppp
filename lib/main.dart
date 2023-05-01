@@ -7,8 +7,12 @@ import 'package:ppp/slides/rive.dart';
 import 'package:ppp/slides/slides.dart';
 import 'package:ppp/slides/well_be_right_back.dart';
 import 'package:ppp/utils/colors.dart';
+import 'package:ppp/utils/remote_controller.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  await RemoteController.init();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

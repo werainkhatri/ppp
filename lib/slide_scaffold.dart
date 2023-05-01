@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ppp/utils/remote_controller.dart';
 import 'package:ppp/widgets/nav_button.dart';
 import 'package:ppp/utils/functions.dart';
 
@@ -43,6 +44,8 @@ class _SlideScaffoldState extends State<SlideScaffold> {
     if (widget.slides.isNotEmpty) {
       _currentSlide = 0;
     }
+    RemoteController.onNext(_onNext);
+    RemoteController.onPrevious(_onPrevious);
   }
 
   @override
