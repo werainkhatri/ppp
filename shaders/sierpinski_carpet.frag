@@ -1,5 +1,11 @@
+#version 460 core
+#include <flutter/runtime_effect.glsl>
+
 #define max_gen 20.
 
+out vec4 fragColor;
+
+uniform vec2 resolution;
 uniform float iterations;
 uniform vec4 carpetColor;
 uniform vec4 backgroundColor;
@@ -64,7 +70,7 @@ float sierpinskiCarpet (vec2 uv) {
   return d;
 }
 
-vec4 fragment (vec2 uv, vec2 fragCoord) {
+vec4 fragment (vec2 uv) {
   // scales uv from (0,1) to (-1,1) [both x and y as this assumes the canvas
   // is a square].
   vec2 uv2 = 2. * (uv - .5 * vec2(1));
@@ -75,4 +81,10 @@ vec4 fragment (vec2 uv, vec2 fragCoord) {
     return carpetColor;
   }
   return backgroundColor;
+}
+
+void main() {
+  // expects that aspect ratio is one, so that the canvas is a square.
+  vec2 uv = FlutterFragCoord().xy / resolution.xy;
+  fragColor = fragment(uv);
 }

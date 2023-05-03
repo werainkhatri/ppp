@@ -149,7 +149,7 @@ class ToolWidget extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
+              color: Theme.of(context).colorScheme.background,
               border: Border.all(
                 color: Theme.of(context).colorScheme.inversePrimary,
               ),

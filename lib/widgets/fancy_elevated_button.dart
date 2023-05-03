@@ -15,7 +15,7 @@ class FancyElevatedButton extends StatelessWidget {
           side: BorderSide(
             color: Theme.of(context).colorScheme.inverseSurface,
             width: size / 200,
-            strokeAlign: StrokeAlign.center,
+            strokeAlign: BorderSide.strokeAlignCenter,
           ),
           borderRadius: BorderRadius.circular(size / 30),
         ),

@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppp/utils/extensions.dart';
 import 'package:ppp/utils/strings.dart';
-import 'package:umbra_flutter/umbra_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'line.dart';
@@ -128,12 +127,21 @@ class F {
     );
   }
 
-  static Vector4 colorToVector4(Color color) => Vector4(
-        color.red / 255,
-        color.green / 255,
-        color.blue / 255,
-        color.alpha / 255,
-      );
+  // static List<double> colorToVector4(Color color) => [
+  //       color.red / 255,
+  //       color.green / 255,
+  //       color.blue / 255,
+  //       color.alpha / 255,
+  //     ];
+
+  static List<double> getFloatColor(Color color) {
+    return [
+      color.red / 255 * color.opacity,
+      color.green / 255 * color.opacity,
+      color.blue / 255 * color.opacity,
+      color.opacity,
+    ];
+  }
 
   /// Returns the point at a perpendicular distance of [distance] from the midpoint
   /// of [line].

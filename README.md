@@ -2,6 +2,16 @@
 
 flutter slides of my session on different ways to paint pixels in flutter.
 
+### Summary
+1. Widgets
+1. Custom Paint
+1. RenderObject
+1. Shaders
+1. Rive
+1. Lottie
+1. Flame
+1. FlutterFlow
+
 ### Resources
 #### Flutter
 1. [Kickstart Flutter](https://www.youtube.com/watch?v=ftQJc59ztJA): Getting started with Flutter for beginners.

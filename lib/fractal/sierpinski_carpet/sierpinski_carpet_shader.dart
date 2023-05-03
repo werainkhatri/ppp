@@ -1,64 +1,127 @@
-import 'dart:convert';
-import 'dart:typed_data';
+import 'dart:math';
 import 'dart:ui';
 
-import 'package:umbra_flutter/umbra_flutter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_shaders/flutter_shaders.dart';
+import 'package:ppp/utils/functions.dart';
 
-/// {@template sierpinski_carpet}
-/// A Flutter Widget for the `sierpinski_carpet` shader.
-/// {@endtemplate}
-class SierpinskiCarpetShader extends UmbraWidget {
-  /// {@macro sierpinski_carpet}
-  const SierpinskiCarpetShader({
-    super.key,
-    super.blendMode = BlendMode.src,
-    super.child,
-    super.errorBuilder,
-    super.compilingBuilder,
-    required double iterations,
-    required Vector4 carpetColor,
-    required Vector4 backgroundColor,
-  })  : _iterations = iterations,
-        _carpetColor = carpetColor,
-        _backgroundColor = backgroundColor,
-        super();
-
-  static Future<FragmentProgram>? _cachedProgram;
-
-  final double _iterations;
-
-  final Vector4 _carpetColor;
-
-  final Vector4 _backgroundColor;
+class SierpinskiCarpetShader extends StatefulWidget {
+  final bool showZoomLabel;
+  const SierpinskiCarpetShader({super.key, this.showZoomLabel = false});
 
   @override
-  List<double> getFloatUniforms() {
-    return [
-      _iterations,
-      _carpetColor.x,
-      _carpetColor.y,
-      _carpetColor.z,
-      _carpetColor.w,
-      _backgroundColor.x,
-      _backgroundColor.y,
-      _backgroundColor.z,
-      _backgroundColor.w,
-    ];
+  State<SierpinskiCarpetShader> createState() => _SierpinskiCarpetShaderState();
+}
+
+class _SierpinskiCarpetShaderState extends State<SierpinskiCarpetShader> {
+  final TransformationController _controller = TransformationController();
+  int maxByZoom = 0;
+
+  int _iterationsFromZoom(double zoom) {
+    // increase one for every 3x zoom
+    final double logZoom = log(zoom) / log(3);
+    return logZoom.floor();
   }
 
   @override
-  List<ImageShader> getSamplerUniforms() {
-    return [];
-  }
+  Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-  @override
-  Future<FragmentProgram> program() {
-    return _cachedProgram ??
-        FragmentProgram.compile(
-          spirv: Uint8List.fromList(base64Decode(_spirv)).buffer,
-        );
+    return Stack(
+      children: [
+        InteractiveViewer(
+          maxScale: 2e4,
+          transformationController: _controller,
+          onInteractionUpdate: (_) {
+            final int newDueToZoom = _iterationsFromZoom(_controller.value.row0[0]);
+            // only update if the zoom level has changed
+            if (newDueToZoom != maxByZoom) {
+              setState(() {
+                maxByZoom = newDueToZoom;
+              });
+            }
+          },
+          child: ShaderBuilder(
+            assetKey: 'shaders/sierpinski_carpet.frag',
+            (context, shader, child) {
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  final double maxSize = min(constraints.maxHeight, constraints.maxWidth);
+                  // start with 2 and for every 400 pixels increase by 1
+                  final double maxBySize = 2.0 + (maxSize / 400).floor();
+
+                  return Center(
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: CustomPaint(
+                        painter: _SierpinskiCarpetShaderPainter(
+                          shader: shader,
+                          carpetColor: colorScheme.primary,
+                          backgroundColor: colorScheme.background,
+                          iterations: maxBySize + maxByZoom,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ),
+        if (widget.showZoomLabel)
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Zoom: ${_controller.value.row0[0].toInt()}',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+            ),
+          ),
+      ],
+    );
   }
 }
 
-const _spirv =
-    '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';
+class _SierpinskiCarpetShaderPainter extends CustomPainter {
+  final FragmentShader shader;
+  final Color carpetColor, backgroundColor;
+  final double iterations;
+
+  const _SierpinskiCarpetShaderPainter({
+    required this.shader,
+    required this.carpetColor,
+    required this.backgroundColor,
+    required this.iterations,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    updateShader(size);
+
+    canvas.drawRect(
+      Rect.fromLTRB(0, 0, size.width, size.height),
+      Paint()..shader = shader,
+    );
+  }
+
+  void updateShader(Size size) {
+    assert(size.width == size.height);
+
+    final floats = [
+      size.width,
+      size.height,
+      iterations,
+      ...F.getFloatColor(carpetColor),
+      ...F.getFloatColor(backgroundColor),
+    ];
+
+    for (int i = 0; i < floats.length; i++) {
+      shader.setFloat(i, floats[i]);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}

@@ -13,10 +13,10 @@ dependencies:
   flex_color_scheme: ^6.1.1
   flutter:
     sdk: flutter
+  flutter_shaders: ^0.1.1
   google_fonts: ^3.0.1
   just_audio: ^0.9.32
   rive: ^0.10.0
-  umbra_flutter: ^0.1.0-dev.4
   url_launcher: ^6.1.7
 
 dev_dependencies:
@@ -36,5 +36,10 @@ flutter:
     - family: Rubik Maze
       fonts:
         - asset: assets/fonts/RubikMaze-Regular.ttf
+  shaders:
+    - shaders/sierpinski_carpet.frag
+    - shaders/hello_world.frag
+    - shaders/water.frag
+    - shaders/mandelbrot_set.frag
 
 

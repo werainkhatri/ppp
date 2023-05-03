@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppp/fractal/koch_snowflake/koch_snowflake.dart';
-import 'package:ppp/fractal/sierpinski_carpet/sierpinski_carpet.dart';
+import 'package:ppp/fractal/sierpinski_carpet/sierpinski_carpet_shader.dart';
 import 'package:ppp/fractal/sierpinski_carpet/sierpinski_carpet_custom_paint.dart';
 import 'package:ppp/utils/functions.dart';
 import 'package:ppp/utils/strings.dart';
@@ -11,7 +11,7 @@ class Fractals extends StatefulWidget {
   static const List<Widget> _states = [
     _Title(showFractals: false), // 0
     _Title(showFractals: true), // 1
-    Hero(tag: S.sierpinksiCarpetTag, child: SierpinksiCarpet()), // 2
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetShader()), // 2
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 1)), // 3
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 2)), // 4
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 3)), // 5
@@ -19,7 +19,7 @@ class Fractals extends StatefulWidget {
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 5)), // 7
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 6)), // 8
     Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetCustomPaint(generation: 7)), // 9
-    Hero(tag: S.sierpinksiCarpetTag, child: SierpinksiCarpet()), // 10
+    Hero(tag: S.sierpinksiCarpetTag, child: SierpinskiCarpetShader()), // 10
     _Title(showFractals: true), // 11
     Hero(tag: S.kochSnowflakeTag, child: KochSnowflake()), // 12
     _Title(showFractals: true), // 13
@@ -61,7 +61,7 @@ class _Title extends StatelessWidget {
                 dimension: constraints.maxHeight / 2.5,
                 child: const Hero(
                   tag: S.sierpinksiCarpetTag,
-                  child: SierpinksiCarpet(),
+                  child: SierpinskiCarpetShader(),
                 ),
               ),
             ),

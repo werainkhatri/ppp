@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:ppp/slides/shaders_code.dart';
+import 'package:ppp/slides/shaders_hello_world.dart';
 import 'package:ppp/utils/functions.dart';
 import 'package:ppp/widgets/image_source.dart';
 
@@ -17,8 +17,7 @@ class ShadersSlide extends StatelessWidget {
     _gutenbergPress,
     _cpuVsGpuGoogle,
     _cpuVsGpuTBOS,
-    _umbraIntro,
-    _umbraExample,
+    _shadersExample,
   ].asMap();
 
   @override
@@ -166,13 +165,7 @@ class ShadersSlide extends StatelessWidget {
     );
   }
 
-  static Widget _umbraIntro(double w, double minDim, BuildContext context) =>
-      Image.asset('assets/umbra.png');
-
-  // dart pub global activate umbra_cli
-  // umbra install-deps
-  // umbra generate shaders/hello_world_shader.glsl --output lib/shader_widgets -t flutter-widget
-  static Widget _umbraExample(double w, double minDim, BuildContext context) {
+  static Widget _shadersExample(double w, double minDim, BuildContext context) {
     return Stack(
       children: [
         Padding(

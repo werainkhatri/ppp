@@ -3,7 +3,12 @@
  * License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
  * Contact: tdmaav@gmail.com
  */
+#version 460 core
+#include <flutter/runtime_effect.glsl>
 
+out vec4 fragColor;
+
+uniform vec2 resolution;
 uniform float iTime;
 uniform vec2 iMouse;
 uniform float choppy;
@@ -211,4 +216,10 @@ vec4 fragment(vec2 uv, vec2 fragCoord) {
     
     // post
 	return vec4(pow(color,vec3(0.65)), 1.0);
+}
+
+void main() {
+    vec2 uv = FlutterFragCoord().xy / resolution.xy;
+    vec2 fragCoord = FlutterFragCoord().xy;
+    fragColor = fragment(uv, fragCoord);
 }

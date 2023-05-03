@@ -12,7 +12,7 @@ class FancyContainer extends StatelessWidget {
         border: Border.all(
           color: Theme.of(context).colorScheme.inverseSurface,
           width: size / 75,
-          strokeAlign: StrokeAlign.center,
+          strokeAlign: BorderSide.strokeAlignCenter,
         ),
         gradient: LinearGradient(
           colors: [
